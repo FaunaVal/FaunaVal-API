@@ -16,52 +16,37 @@ public class AnimalService {
     @Autowired
     IAnimalJPARepository animalJPARepository;
 
-    public Long count(){
+    public Long count() {
         return this.animalJPARepository.count();
     }
 
-    public List<AnimalDTO> findAllListInfo (){
-        List<Animal> animals = animalJPARepository.findAllListInfo();
+    public List<AnimalDTO> findAllListInfo(Long id) {
+        List<Animal> animals = animalJPARepository.findAllListInfo(id);
         return AnimalMapper.toDTO(animals);
     }
 
-    public List<AnimalDTO> findAll(){
-        List<Animal> animals = this.findAllAccordingParameters();
-        return AnimalMapper.toDTO(animals);
-    }
-
-    private List<Animal> findAllAccordingParameters (){
-//        if(withGroups){
-//            return this.animalJPARepository.findAllWithGroups();
-//        }
-        return this.animalJPARepository.findAll();
-    }
-
-    public AnimalDTO findById(Long id){
-
-//        if(withGroups){
-//            Optional<Animal> animal = this.animalJPARepository.findByIdWithGroups(id);
-//            return AnimalMapper.toDTO(animal,withGroups);
-//        }
-        Optional<Animal> animal = this.animalJPARepository.findById(id);
+    public AnimalDTO findByIdWithInfo(Long id) {
+        Optional<Animal> animal = this.animalJPARepository.findByIdWithInfo(id);
         return AnimalMapper.toDTO(animal);
     }
 
-    public AnimalDTO create(AnimalDTO animalDTO){
+    public List<AnimalDTO> findAll() {
+        return AnimalMapper.toDTO(this.animalJPARepository.findAll());
+    }
+
+    public AnimalDTO create(AnimalDTO animalDTO) {
         Animal animal = AnimalMapper.toBD(animalDTO);
         animal = this.animalJPARepository.save(animal);
         return AnimalMapper.toDTO(animal);
     }
 
-    public void update(AnimalDTO animalDTO){
+    public void update(AnimalDTO animalDTO) {
         Animal animal = AnimalMapper.toBD(animalDTO);
         this.animalJPARepository.save(animal);
-
     }
 
-    public void delete(AnimalDTO animalDTO){
+    public void delete(AnimalDTO animalDTO) {
         Animal animal = AnimalMapper.toBD(animalDTO);
         this.animalJPARepository.delete(animal);
-
     }
 }

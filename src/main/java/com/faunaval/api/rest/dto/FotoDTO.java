@@ -1,7 +1,6 @@
 package com.faunaval.api.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.faunaval.api.persistencia.modelo.Animal;
 
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class FotoDTO {
         return animal;
     }
 
-    public void setAnimalDTO(AnimalDTO animal) {
+    public void setAnimal(AnimalDTO animal) {
         this.animal = animal;
     }
 

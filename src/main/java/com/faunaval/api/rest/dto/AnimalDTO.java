@@ -84,19 +84,19 @@ public class AnimalDTO {
         this.filtro = filtro;
     }
 
-    public CategoriaDTO getCategoriaDTO() {
+    public CategoriaDTO getCategoria() {
         return categoria;
     }
 
-    public void setCategoriaDTO(CategoriaDTO categoria) {
+    public void setCategoria(CategoriaDTO categoria) {
         this.categoria = categoria;
     }
 
-    public List<FotoDTO> getFotosDTO() {
+    public List<FotoDTO> getFotos() {
         return fotos;
     }
 
-    public void setFotosDTO(List<FotoDTO> fotos) {
+    public void setFotos(List<FotoDTO> fotos) {
         this.fotos = fotos;
     }
 

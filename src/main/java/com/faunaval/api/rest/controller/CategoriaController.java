@@ -15,49 +15,44 @@ public class CategoriaController {
     CategoriaService categoriaService;
 
     @GetMapping("/count")
-    public Long count(){
+    public Long count() {
         return this.categoriaService.count();
     }
 
     @GetMapping("")
-    public List<CategoriaDTO> findAll(){
-        return this.categoriaService.findAll();
-    }
-
-    @GetMapping("/list")
-    public List<CategoriaDTO> findAllList(){
+    public List<CategoriaDTO> findAll() {
         return this.categoriaService.findAll();
     }
 
     @GetMapping("/{id}")
-    public CategoriaDTO findById(@PathVariable Long id){
+    public CategoriaDTO findById(@PathVariable Long id) {
         CategoriaDTO categoriaDTO = this.categoriaService.findById(id);
-        if(categoriaDTO==null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Entity not found");
+        if (categoriaDTO == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity not found");
         }
         return categoriaDTO;
     }
 
     @PostMapping("")
-    @ResponseStatus(code=HttpStatus.CREATED)
-    public CategoriaDTO create(@RequestBody CategoriaDTO categoriaDTO){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public CategoriaDTO create(@RequestBody CategoriaDTO categoriaDTO) {
         return this.categoriaService.create(categoriaDTO);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(code=HttpStatus.NO_CONTENT,reason = "Entity updated")
-    public void update(@PathVariable int id, @RequestBody CategoriaDTO categoriaDTO){
-        if(id != categoriaDTO.getId()){
-            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED,"Error in query");
+    @ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "Entity updated")
+    public void update(@PathVariable int id, @RequestBody CategoriaDTO categoriaDTO) {
+        if (id != categoriaDTO.getId()) {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "Error in query");
         }
         this.categoriaService.update(categoriaDTO);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(code=HttpStatus.NO_CONTENT,reason = "Entity updated")
-    public void delete(@PathVariable int id, @RequestBody CategoriaDTO categoriaDTO){
-        if(id != categoriaDTO.getId()){
-            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED,"Error in query");
+    @ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "Entity updated")
+    public void delete(@PathVariable int id, @RequestBody CategoriaDTO categoriaDTO) {
+        if (id != categoriaDTO.getId()) {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "Error in query");
         }
         this.categoriaService.delete(categoriaDTO);
     }

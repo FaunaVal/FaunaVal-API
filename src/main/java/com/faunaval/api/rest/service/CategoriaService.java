@@ -14,47 +14,32 @@ public class CategoriaService {
     @Autowired
     ICategoriaJPARepository categoriaJPARepository;
 
-    public Long count(){
+    public Long count() {
         return this.categoriaJPARepository.count();
     }
 
-    public List<CategoriaDTO> findAll(){
-        List<Categoria> categorias = this.findAllAccordingParameters();
-        return CategoriaMapper.toDTO(categorias);
+    public List<CategoriaDTO> findAll() {
+        return CategoriaMapper.toDTO(this.categoriaJPARepository.findAll());
     }
 
-    private List<Categoria> findAllAccordingParameters (){
-//        if(withGroups){
-//            return this.CategoriaJPARepository.findAllWithGroups();
-//        }
-        return this.categoriaJPARepository.findAll();
-    }
-
-    public CategoriaDTO findById(Long id){
-
-//        if(withGroups){
-//            Optional<Categoria> Categoria = this.CategoriaJPARepository.findByIdWithGroups(id);
-//            return CategoriaMapper.toDTO(Categoria,withGroups);
-//        }
+    public CategoriaDTO findById(Long id) {
         Optional<Categoria> categoria = this.categoriaJPARepository.findById(id);
         return CategoriaMapper.toDTO(categoria);
     }
 
-    public CategoriaDTO create(CategoriaDTO categoriaDTO){
+    public CategoriaDTO create(CategoriaDTO categoriaDTO) {
         Categoria categoria = CategoriaMapper.toBD(categoriaDTO);
         categoria = this.categoriaJPARepository.save(categoria);
         return CategoriaMapper.toDTO(categoria);
     }
 
-    public void update(CategoriaDTO categoriaDTO){
+    public void update(CategoriaDTO categoriaDTO) {
         Categoria categoria = CategoriaMapper.toBD(categoriaDTO);
         this.categoriaJPARepository.save(categoria);
-
     }
 
-    public void delete(CategoriaDTO categoriaDTO){
+    public void delete(CategoriaDTO categoriaDTO) {
         Categoria categoria = CategoriaMapper.toBD(categoriaDTO);
         this.categoriaJPARepository.delete(categoria);
-
     }
 }

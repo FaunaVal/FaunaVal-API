@@ -1,7 +1,6 @@
 package com.faunaval.api.rest.mapper;
 
 
-
 import com.faunaval.api.persistencia.modelo.Categoria;
 import com.faunaval.api.rest.dto.CategoriaDTO;
 
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 public class CategoriaMapper {
 
-    public static CategoriaDTO toDTO(Categoria categoria){
+    public static CategoriaDTO toDTO(Categoria categoria) {
         CategoriaDTO categoriaDTO = new CategoriaDTO();
         categoriaDTO.setId(categoria.getId());
         categoriaDTO.setNombre(categoria.getNombre());
@@ -19,26 +18,26 @@ public class CategoriaMapper {
         return categoriaDTO;
     }
 
-    public static CategoriaDTO toDTO(Optional<Categoria> categoriaOptional){
-        if(categoriaOptional.isEmpty()){
+    public static CategoriaDTO toDTO(Optional<Categoria> categoriaOptional) {
+        if (categoriaOptional.isEmpty()) {
             return null;
         }
         return CategoriaMapper.toDTO(categoriaOptional.get());
     }
 
-    public static List<CategoriaDTO> toDTO(List<Categoria> categorias){
-        List<CategoriaDTO> categoriaDTOS= new ArrayList<>();
+    public static List<CategoriaDTO> toDTO(List<Categoria> categorias) {
+        List<CategoriaDTO> categoriaDTOS = new ArrayList<>();
 
-        if(categorias==null){
+        if (categorias == null) {
             return categoriaDTOS;
         }
-        for (Categoria categoria:categorias) {
+        for (Categoria categoria : categorias) {
             categoriaDTOS.add(CategoriaMapper.toDTO(categoria));
         }
         return categoriaDTOS;
     }
 
-    public static Categoria toBD(CategoriaDTO categoriaDTO){
+    public static Categoria toBD(CategoriaDTO categoriaDTO) {
         Categoria categoria = new Categoria();
         categoria.setId(categoriaDTO.getId());
         categoria.setNombre(categoriaDTO.getNombre());
@@ -46,12 +45,12 @@ public class CategoriaMapper {
         return categoria;
     }
 
-    public static List<Categoria> toBD(List<CategoriaDTO> categoriaDTOS){
+    public static List<Categoria> toBD(List<CategoriaDTO> categoriaDTOS) {
         List<Categoria> categorias = new ArrayList<>();
-        if(categoriaDTOS==null){
+        if (categoriaDTOS == null) {
             return categorias;
         }
-        for(CategoriaDTO categoriaDTO: categoriaDTOS){
+        for (CategoriaDTO categoriaDTO : categoriaDTOS) {
             categorias.add(CategoriaMapper.toBD(categoriaDTO));
         }
         return categorias;

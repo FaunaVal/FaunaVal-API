@@ -11,53 +11,35 @@ import java.util.Optional;
 
 public class FotoService {
 
-
     @Autowired
     IFotoJPARepository fotoJPARepository;
 
-    public Long count(){
+    public Long count() {
         return this.fotoJPARepository.count();
     }
 
-    public List<FotoDTO> findAll(){
-        List<Foto> fotos = this.findAllAccordingParameters();
-        return FotoMapper.toDTO(fotos);
+    public List<FotoDTO> findAll() {
+        return FotoMapper.toDTO(this.fotoJPARepository.findAll());
     }
 
-    private List<Foto> findAllAccordingParameters (){
-//        if){
-//            return this.FotoJPARepository.findAl();
-//        }
-        return this.fotoJPARepository.findAll();
-    }
-
-    public FotoDTO findById(Long id){
-
-//        if){
-//            Optional<Foto> Foto = this.FotoJPARepository.findByI(id);
-//            return FotoMapper.toDTO(Foto);
-//        }
+    public FotoDTO findById(Long id) {
         Optional<Foto> foto = this.fotoJPARepository.findById(id);
         return FotoMapper.toDTO(foto);
     }
 
-    public FotoDTO create(FotoDTO fotoDTO){
+    public FotoDTO create(FotoDTO fotoDTO) {
         Foto foto = FotoMapper.toBD(fotoDTO);
         foto = this.fotoJPARepository.save(foto);
         return FotoMapper.toDTO(foto);
     }
 
-    public void update(FotoDTO fotoDTO){
+    public void update(FotoDTO fotoDTO) {
         Foto foto = FotoMapper.toBD(fotoDTO);
         this.fotoJPARepository.save(foto);
-
     }
 
-    public void delete(FotoDTO fotoDTO){
+    public void delete(FotoDTO fotoDTO) {
         Foto foto = FotoMapper.toBD(fotoDTO);
         this.fotoJPARepository.delete(foto);
-
     }
-
-
 }
