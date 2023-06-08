@@ -31,6 +31,11 @@ public class AnimalController {
         return this.animalService.findAllListInfo(id);
     }
 
+    @GetMapping("/list/{id}/{filter}")
+    public List<AnimalDTO> findAllListFiltered(@PathVariable Long id, @PathVariable String filter) {
+        return this.animalService.findAllListInfoFiltered(id, filter);
+    }
+
     @GetMapping("/{id}")
     public AnimalDTO findById(@PathVariable Long id) {
         AnimalDTO animalDTO = this.animalService.findByIdWithInfo(id);

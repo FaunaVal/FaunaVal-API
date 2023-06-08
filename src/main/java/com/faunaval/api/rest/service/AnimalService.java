@@ -25,6 +25,11 @@ public class AnimalService {
         return AnimalMapper.toDTO(animals);
     }
 
+    public List<AnimalDTO> findAllListInfoFiltered(Long id, String filter) {
+        List<Animal> animals = animalJPARepository.findAllListInfoFiltered(id, filter);
+        return AnimalMapper.toDTO(animals);
+    }
+
     public AnimalDTO findByIdWithInfo(Long id) {
         Optional<Animal> animal = this.animalJPARepository.findByIdWithInfo(id);
         return AnimalMapper.toDTO(animal);
